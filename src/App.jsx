@@ -384,6 +384,7 @@ export default function App() {
           email: formData.email,
           subject: formData.subject,
           message: formData.message,
+          botField: formData.botField,
         }),
       });
 
