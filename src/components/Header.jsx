@@ -10,6 +10,17 @@ export default function Header({ scrollTo }) {
     setMenuOpen(false);
   };
 
+  const navClass =
+    "relative text-[15px] font-medium tracking-wide capitalize text-slate-300 transition after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:w-0 after:bg-[var(--accent)] after:transition-all hover:after:w-full";
+
+  const hoverAccent = (event) => {
+    event.currentTarget.style.color = "var(--accent)";
+  };
+
+  const resetHover = (event) => {
+    event.currentTarget.style.color = "";
+  };
+
   return (
     <header className="sticky top-0 z-50 border-b border-white/10 bg-[#070b12]/80 backdrop-blur-xl">
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
@@ -17,13 +28,12 @@ export default function Header({ scrollTo }) {
           onClick={() => scrollTo("hero")}
           className="flex items-center gap-3 text-left"
         >
-          <div className="grid h-11 w-11 place-items-center rounded-2xl border border-cyan-300/30 bg-cyan-300/10 font-bold text-cyan-200 shadow-lg shadow-cyan-500/10">
+          <div className="grid h-11 w-11 place-items-center rounded-2xl border theme-accent-border theme-accent-soft font-bold theme-accent-text shadow-lg">
             KP
           </div>
+
           <div>
-            <h1 className="text-lg font-bold leading-none">
-              Kurt Panolino
-            </h1>
+            <h1 className="text-lg font-bold leading-none">Kurt Panolino</h1>
             <p className="mt-1 text-sm text-slate-400">Resume Portfolio</p>
           </div>
         </button>
@@ -33,7 +43,9 @@ export default function Header({ scrollTo }) {
             <button
               key={item}
               onClick={() => handleClick(item)}
-              className="relative text-[15px] font-medium tracking-wide capitalize text-slate-300 transition hover:text-cyan-300 after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:w-0 after:bg-cyan-300 after:transition-all hover:after:w-full"
+              onMouseEnter={hoverAccent}
+              onMouseLeave={resetHover}
+              className={navClass}
             >
               {item}
             </button>

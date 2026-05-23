@@ -10,7 +10,12 @@ export default function RecruiterTrust({ scrollTo }) {
         <div className="grid gap-4 md:grid-cols-4">
           {metrics.map(([value, label]) => (
             <Card key={label}>
-              <p className="text-2xl font-black text-cyan-300">{value}</p>
+              <p
+                className="text-2xl font-black"
+                style={{ color: "var(--accent)" }}
+              >
+                {value}
+              </p>
               <p className="mt-2 text-sm leading-6 text-slate-300">{label}</p>
             </Card>
           ))}
@@ -53,10 +58,20 @@ export default function RecruiterTrust({ scrollTo }) {
       </section>
 
       <section className="mx-auto max-w-7xl px-6 py-20">
-        <div className="rounded-[2rem] border border-cyan-300/20 bg-gradient-to-br from-cyan-300/15 via-white/[0.06] to-blue-500/10 p-8 md:p-12">
+        <div
+          className="rounded-[2rem] border bg-white/[0.055] p-8 md:p-12"
+          style={{
+            borderColor: "var(--accent)",
+            background:
+              "linear-gradient(135deg, var(--accent-soft), rgba(255,255,255,0.04), rgba(59,130,246,0.08))",
+          }}
+        >
           <div className="flex flex-col gap-8 md:flex-row md:items-center md:justify-between">
             <div>
-              <p className="mb-3 flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.28em] text-cyan-300">
+              <p
+                className="mb-3 flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.28em]"
+                style={{ color: "var(--accent)" }}
+              >
                 <Sparkles size={16} /> Recruiter CTA
               </p>
 
@@ -72,7 +87,8 @@ export default function RecruiterTrust({ scrollTo }) {
 
             <button
               onClick={() => scrollTo("contact")}
-              className="inline-flex shrink-0 items-center justify-center gap-2 rounded-2xl bg-cyan-300 px-6 py-4 font-semibold text-slate-950 transition hover:bg-cyan-200"
+              className="inline-flex shrink-0 items-center justify-center gap-2 rounded-2xl px-6 py-4 font-semibold text-slate-950 transition hover:opacity-90"
+              style={{ backgroundColor: "var(--accent)" }}
             >
               Start a Conversation <ArrowRight size={18} />
             </button>

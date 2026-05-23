@@ -16,7 +16,10 @@ export default function Services() {
 
           return (
             <Card key={service.title}>
-              <Icon className="text-cyan-300 transition duration-300 group-hover:rotate-3 group-hover:scale-110" />
+              <Icon
+                className="transition duration-300 group-hover:rotate-3 group-hover:scale-110"
+                style={{ color: "var(--accent)" }}
+              />
 
               <h3 className="mt-5 text-xl font-bold">{service.title}</h3>
 

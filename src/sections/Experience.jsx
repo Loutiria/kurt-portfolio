@@ -16,11 +16,20 @@ export default function Experience() {
 
           return (
             <Card key={item.title}>
-              <div className="absolute -left-[13px] mt-1 grid h-6 w-6 place-items-center rounded-full border border-cyan-300/50 bg-[#070b12]">
-                <div className="h-2 w-2 rounded-full bg-cyan-300" />
+              <div
+                className="absolute -left-[13px] mt-1 grid h-6 w-6 place-items-center rounded-full border bg-[#070b12]"
+                style={{ borderColor: "var(--accent)" }}
+              >
+                <div
+                  className="h-2 w-2 rounded-full"
+                  style={{ backgroundColor: "var(--accent)" }}
+                />
               </div>
 
-              <p className="flex items-center gap-3 text-sm uppercase tracking-[0.22em] text-cyan-300">
+              <p
+                className="flex items-center gap-3 text-sm uppercase tracking-[0.22em]"
+                style={{ color: "var(--accent)" }}
+              >
                 <Icon size={18} /> {item.period}
               </p>
 

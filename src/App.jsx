@@ -5,6 +5,10 @@ import CursorGlow from "./components/CursorGlow";
 import ScrollProgress from "./components/ScrollProgress";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import CommandPalette from "./components/CommandPalette";
+import FloatingDock from "./components/FloatingDock";
+import ThemeSwitcher from "./components/ThemeSwitcher";
+import AudioToggle from "./components/AudioToggle";
 
 import Hero from "./sections/Hero";
 import About from "./sections/About";
@@ -16,6 +20,7 @@ import Projects from "./sections/Projects";
 import Experience from "./sections/Experience";
 import RecruiterTrust from "./sections/RecruiterTrust";
 import Contact from "./sections/Contact";
+import WhyHireMe from "./sections/WhyHireMe";
 
 export default function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -38,6 +43,10 @@ export default function App() {
   return (
     <main className="min-h-screen overflow-hidden bg-[#070b12] text-white selection:bg-cyan-300 selection:text-slate-950">
       <ScrollProgress />
+      <CommandPalette scrollTo={scrollTo} />
+      <FloatingDock scrollTo={scrollTo} />
+      <ThemeSwitcher />
+      <AudioToggle />
       <CursorGlow />
       <LoadingScreen isLoading={isLoading} />
       <AnimatedBackground />
@@ -52,6 +61,7 @@ export default function App() {
       <Skills />
       <Projects />
       <Experience />
+      <WhyHireMe />
       <RecruiterTrust scrollTo={scrollTo} />
       <Contact />
 

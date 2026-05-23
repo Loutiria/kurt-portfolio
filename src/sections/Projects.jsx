@@ -14,7 +14,10 @@ export default function Projects() {
       <div className="grid gap-6 lg:grid-cols-3">
         {projects.map((project) => (
           <Card key={project.title} className="flex h-full flex-col">
-            <p className="text-sm uppercase tracking-[0.22em] text-cyan-300">
+            <p
+              className="text-sm uppercase tracking-[0.22em]"
+              style={{ color: "var(--accent)" }}
+            >
               {project.role}
             </p>
 
@@ -27,7 +30,10 @@ export default function Projects() {
             <ul className="mt-6 space-y-3 text-sm leading-6 text-slate-300">
               {project.responsibilities.map((item) => (
                 <li key={item} className="flex gap-3">
-                  <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-cyan-300" />
+                  <span
+                    className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full"
+                    style={{ backgroundColor: "var(--accent)" }}
+                  />
                   {item}
                 </li>
               ))}
@@ -57,7 +63,8 @@ export default function Projects() {
               href={project.link}
               target="_blank"
               rel="noreferrer"
-              className="mt-8 inline-flex items-center gap-2 text-sm font-semibold text-cyan-300 hover:text-cyan-200"
+              className="mt-8 inline-flex items-center gap-2 text-sm font-semibold transition hover:opacity-80"
+              style={{ color: "var(--accent)" }}
             >
               Visit Project <ExternalLink size={16} />
             </a>

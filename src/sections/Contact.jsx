@@ -1,5 +1,16 @@
 import { useState } from "react";
-import { Mail, Phone, MapPin, ExternalLink, Clock, Target, Send } from "lucide-react";
+import {
+  Mail,
+  Phone,
+  MapPin,
+  ExternalLink,
+  Clock,
+  Target,
+  Send,
+  Download,
+  CheckCircle,
+} from "lucide-react";
+
 import SectionHeader from "../components/SectionHeader";
 import Card from "../components/Card";
 
@@ -7,21 +18,30 @@ export default function Contact() {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
-    subject: "",
     message: "",
     botField: "",
   });
 
   const [formError, setFormError] = useState("");
 
+  const gmailLink =
+    "https://mail.google.com/mail/?view=cm&fs=1&to=kurutopanorino@gmail.com&su=Portfolio%20Inquiry&body=Hi%20Kurt%2C%20I%20saw%20your%20portfolio%20and%20would%20like%20to%20connect.";
+
   const handleChange = (event) => {
     const { name, value } = event.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
+
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
   };
 
   const encode = (data) => {
     return Object.keys(data)
-      .map((key) => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
+      .map(
+        (key) =>
+          encodeURIComponent(key) + "=" + encodeURIComponent(data[key])
+      )
       .join("&");
   };
 
@@ -36,7 +56,6 @@ export default function Contact() {
     if (
       !formData.name.trim() ||
       !formData.email.trim() ||
-      !formData.subject.trim() ||
       !formData.message.trim()
     ) {
       setFormError("Please complete all fields before sending.");
@@ -48,25 +67,26 @@ export default function Contact() {
       return;
     }
 
-    if (formData.message.length < 20) {
+    if (formData.message.length < 15) {
       setFormError("Please write a more complete message before sending.");
       return;
     }
 
-    if (formData.message.length > 1200) {
-      setFormError("Please keep the message under 1,200 characters.");
+    if (formData.message.length > 700) {
+      setFormError("Please keep the message under 700 characters.");
       return;
     }
 
     try {
       await fetch("/", {
         method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
         body: encode({
           "form-name": "portfolio-contact",
           name: formData.name,
           email: formData.email,
-          subject: formData.subject,
           message: formData.message,
           botField: formData.botField,
         }),
@@ -75,7 +95,6 @@ export default function Contact() {
       setFormData({
         name: "",
         email: "",
-        subject: "",
         message: "",
         botField: "",
       });
@@ -90,60 +109,132 @@ export default function Contact() {
     <section id="contact" className="mx-auto max-w-7xl px-6 py-24">
       <SectionHeader
         label="Contact"
-        title="Let’s connect for administrative, operations, or project support roles."
-        description="Submit the form below to send a message through Netlify Forms."
+        title="Let’s work together."
+        description="Open to Virtual Assistant, administrative support, documentation, coordination, and digital operations support opportunities."
       />
 
-      <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
-        <Card>
-          <h3 className="text-2xl font-bold">Contact Information</h3>
+      <div className="grid gap-8 lg:grid-cols-[1fr_0.9fr]">
+        <Card className="p-8">
+          <div
+            className="mb-6 inline-flex items-center gap-2 rounded-full border px-4 py-2 text-sm font-medium"
+            style={{
+              borderColor: "var(--accent)",
+              backgroundColor: "var(--accent-soft)",
+              color: "var(--accent)",
+            }}
+          >
+            <span className="h-2 w-2 rounded-full bg-emerald-300" />
+            Currently available for remote and part-time roles
+          </div>
 
-          <div className="mt-7 space-y-5 text-slate-300">
+          <h3 className="text-3xl font-black tracking-tight text-white">
+            Need organized support for admin, events, or digital workflows?
+          </h3>
+
+          <p className="mt-5 max-w-2xl leading-8 text-slate-300">
+            I can support teams with documentation, file organization, data
+            entry, event coordination, expense tracking, email communication,
+            and structured digital operations.
+          </p>
+
+          <div className="mt-8 grid gap-4 sm:grid-cols-2">
+            {[
+              "Virtual Assistant Support",
+              "Administrative Documentation",
+              "Event Coordination",
+              "Digital Operations Support",
+            ].map((item) => (
+              <div
+                key={item}
+                className="flex items-center gap-3 rounded-2xl border border-white/10 bg-black/20 p-4 text-sm text-slate-300"
+              >
+                <CheckCircle
+                  size={18}
+                  style={{ color: "var(--accent)" }}
+                />
+                {item}
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-8 grid gap-4 sm:grid-cols-2">
             <a
-              href="mailto:kurutopanorino@gmail.com"
-              className="flex items-center gap-4 transition hover:text-cyan-300"
+              href={gmailLink}
+              target="_blank"
+              rel="noreferrer"
+              className="flex items-center gap-4 rounded-2xl border border-white/10 bg-black/20 p-4 transition hover:border-[var(--accent)]"
             >
-              <Mail className="text-cyan-300" /> kurutopanorino@gmail.com
+              <Mail style={{ color: "var(--accent)" }} />
+              <div>
+                <p className="font-semibold text-slate-200">Email</p>
+                <p className="text-sm text-slate-400">
+                  kurutopanorino@gmail.com
+                </p>
+              </div>
             </a>
-
-            <p className="flex items-center gap-4">
-              <Phone className="text-cyan-300" /> Phone available upon request
-            </p>
-
-            <p className="flex items-center gap-4">
-              <MapPin className="text-cyan-300" /> Iloilo City, Philippines
-            </p>
 
             <a
               href="https://www.linkedin.com/in/kurt-panolino-8a5ab4410/"
               target="_blank"
               rel="noreferrer"
-              className="flex items-center gap-4 transition hover:text-cyan-300"
+              className="flex items-center gap-4 rounded-2xl border border-white/10 bg-black/20 p-4 transition hover:border-[var(--accent)]"
             >
-              <ExternalLink className="text-cyan-300" /> LinkedIn Profile
+              <ExternalLink style={{ color: "var(--accent)" }} />
+              <div>
+                <p className="font-semibold text-slate-200">LinkedIn</p>
+                <p className="text-sm text-slate-400">View profile</p>
+              </div>
             </a>
+
+            <a
+              href="/Kurt-Panolino-Resume.pdf"
+              className="flex items-center gap-4 rounded-2xl border border-white/10 bg-black/20 p-4 transition hover:border-[var(--accent)]"
+            >
+              <Download style={{ color: "var(--accent)" }} />
+              <div>
+                <p className="font-semibold text-slate-200">Resume</p>
+                <p className="text-sm text-slate-400">Download PDF</p>
+              </div>
+            </a>
+
+            <div className="flex items-center gap-4 rounded-2xl border border-white/10 bg-black/20 p-4">
+              <MapPin style={{ color: "var(--accent)" }} />
+              <div>
+                <p className="font-semibold text-slate-200">Location</p>
+                <p className="text-sm text-slate-400">
+                  Iloilo City, Philippines
+                </p>
+              </div>
+            </div>
           </div>
 
           <div className="mt-8 grid grid-cols-2 gap-3 text-sm text-slate-400">
             <div className="rounded-2xl border border-white/10 bg-black/20 p-4">
-              <Clock className="mb-3 text-cyan-300" />
+              <Clock className="mb-3" style={{ color: "var(--accent)" }} />
               Responsive within available hours
             </div>
 
             <div className="rounded-2xl border border-white/10 bg-black/20 p-4">
-              <Target className="mb-3 text-cyan-300" />
+              <Target className="mb-3" style={{ color: "var(--accent)" }} />
               Open to remote support roles
             </div>
           </div>
         </Card>
 
-        <Card>
+        <Card className="p-8">
+          <h3 className="text-2xl font-bold text-white">Quick Inquiry</h3>
+
+          <p className="mt-3 text-sm leading-6 text-slate-400">
+            Send a short message. For formal applications, email or LinkedIn is
+            recommended.
+          </p>
+
           <form
             name="portfolio-contact"
             method="POST"
             data-netlify="true"
             data-netlify-honeypot="botField"
-            className="grid gap-4"
+            className="mt-6 grid gap-4"
             onSubmit={handleSubmit}
           >
             <input type="hidden" name="form-name" value="portfolio-contact" />
@@ -159,45 +250,33 @@ export default function Contact() {
               </label>
             </p>
 
-            <div className="grid gap-4 md:grid-cols-2">
-              <input
-                name="name"
-                value={formData.name}
-                onChange={handleChange}
-                type="text"
-                placeholder="Your Name"
-                required
-                className="rounded-2xl border border-white/10 bg-black/30 px-5 py-4 text-white outline-none placeholder:text-slate-500 focus:border-cyan-300/60"
-              />
-
-              <input
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
-                type="email"
-                placeholder="Email Address"
-                required
-                className="rounded-2xl border border-white/10 bg-black/30 px-5 py-4 text-white outline-none placeholder:text-slate-500 focus:border-cyan-300/60"
-              />
-            </div>
-
             <input
-              name="subject"
-              value={formData.subject}
+              name="name"
+              value={formData.name}
               onChange={handleChange}
               type="text"
-              placeholder="Subject"
+              placeholder="Your Name"
               required
-              className="rounded-2xl border border-white/10 bg-black/30 px-5 py-4 text-white outline-none placeholder:text-slate-500 focus:border-cyan-300/60"
+              className="rounded-2xl border border-white/10 bg-black/30 px-5 py-4 text-white outline-none placeholder:text-slate-500 focus:border-[var(--accent)]"
+            />
+
+            <input
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              type="email"
+              placeholder="Email Address"
+              required
+              className="rounded-2xl border border-white/10 bg-black/30 px-5 py-4 text-white outline-none placeholder:text-slate-500 focus:border-[var(--accent)]"
             />
 
             <textarea
               name="message"
               value={formData.message}
               onChange={handleChange}
-              placeholder="Message"
+              placeholder="Short message"
               required
-              className="min-h-36 rounded-2xl border border-white/10 bg-black/30 px-5 py-4 text-white outline-none placeholder:text-slate-500 focus:border-cyan-300/60"
+              className="min-h-28 rounded-2xl border border-white/10 bg-black/30 px-5 py-4 text-white outline-none placeholder:text-slate-500 focus:border-[var(--accent)]"
             />
 
             {formError && (
@@ -208,14 +287,15 @@ export default function Contact() {
 
             <button
               type="submit"
-              className="inline-flex items-center justify-center gap-2 rounded-2xl bg-cyan-300 px-6 py-4 font-semibold text-slate-950 transition hover:bg-cyan-200"
+              className="inline-flex items-center justify-center gap-2 rounded-2xl px-6 py-4 font-semibold text-slate-950 transition hover:opacity-90"
+              style={{ backgroundColor: "var(--accent)" }}
             >
               Send Message <Send size={18} />
             </button>
 
             <p className="text-xs leading-6 text-slate-500">
               Protected with required fields, email validation, message length
-              limits, and a hidden anti-spam honeypot.
+              limits, and an anti-spam honeypot.
             </p>
           </form>
         </Card>

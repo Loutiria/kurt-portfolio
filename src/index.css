@@ -1,9 +1,50 @@
 @import "tailwindcss";
 
+:root {
+  --accent: #67e8f9;
+  --accent-soft: rgba(103, 232, 249, 0.12);
+}
+
 html {
   scroll-behavior: smooth;
 }
 
 body {
   margin: 0;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.035;
+  background-image: radial-gradient(#ffffff 0.6px, transparent 0.6px);
+  background-size: 4px 4px;
+}
+
+.theme-accent-text {
+  color: var(--accent);
+}
+
+.theme-accent-bg {
+  background-color: var(--accent);
+}
+
+.theme-accent-border {
+  border-color: var(--accent);
+}
+
+.theme-accent-soft {
+  background-color: var(--accent-soft);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.001ms !important;
+  }
 }
