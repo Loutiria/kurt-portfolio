@@ -15,49 +15,58 @@ export default function FloatingDock({ scrollTo }) {
     );
   };
 
-  const buttonClass =
-    "grid h-12 w-12 place-items-center rounded-2xl border border-white/10 bg-white/10 text-slate-200 backdrop-blur-xl transition hover:-translate-y-1 hover:border-[var(--accent)]";
-
-  const hoverAccent = (event) => {
-    event.currentTarget.style.color = "var(--accent)";
-  };
-
-  const resetHover = (event) => {
-    event.currentTarget.style.color = "";
-  };
+  const items = [
+    { label: "Top", icon: ArrowUp, action: () => scrollTo("hero") },
+    { label: "Resume", icon: Download, href: "/Kurt-Panolino-Resume.pdf" },
+    { label: "Email", icon: Mail, action: handleEmail },
+  ];
 
   return (
-    <div className="fixed bottom-6 right-6 z-50 hidden flex-col gap-3 md:flex">
-      <button
-        onClick={() => scrollTo("hero")}
-        onMouseEnter={hoverAccent}
-        onMouseLeave={resetHover}
-        title="Back to top"
-        className={buttonClass}
-      >
-        <ArrowUp size={18} />
-      </button>
+    <>
+      <div className="fixed bottom-6 right-6 z-50 hidden flex-col gap-3 md:flex">
+        {items.map((item) => {
+          const Icon = item.icon;
+          const content = (
+            <>
+              <Icon size={18} />
+              <span className="max-w-0 overflow-hidden whitespace-nowrap text-xs opacity-0 transition-all group-hover:max-w-24 group-hover:opacity-100">
+                {item.label}
+              </span>
+            </>
+          );
 
-      <a
-        href="/Kurt-Panolino-Resume.pdf"
-        onMouseEnter={hoverAccent}
-        onMouseLeave={resetHover}
-        title="Download resume"
-        className={buttonClass}
-      >
-        <Download size={18} />
-      </a>
+          const className =
+            "group flex h-12 items-center gap-3 rounded-2xl border border-white/10 bg-white/10 px-4 text-slate-200 backdrop-blur-xl transition hover:-translate-y-1 hover:border-[var(--accent)] hover:text-[var(--accent)]";
 
-      <button
-        type="button"
-        onClick={handleEmail}
-        onMouseEnter={hoverAccent}
-        onMouseLeave={resetHover}
-        title="Email Kurt"
-        className={buttonClass}
-      >
-        <Mail size={18} />
-      </button>
-    </div>
+          return item.href ? (
+            <a key={item.label} href={item.href} className={className}>
+              {content}
+            </a>
+          ) : (
+            <button key={item.label} type="button" onClick={item.action} className={className}>
+              {content}
+            </button>
+          );
+        })}
+      </div>
+
+      <div className="fixed bottom-4 left-1/2 z-50 flex -translate-x-1/2 gap-3 rounded-3xl border border-white/10 bg-black/30 p-2 backdrop-blur-xl md:hidden">
+        {items.map((item) => {
+          const Icon = item.icon;
+          const className =
+            "grid h-11 w-11 place-items-center rounded-2xl border border-white/10 bg-[#070b12]/80 text-slate-200 active:scale-95";
+
+          return item.href ? (
+            <a key={item.label} href={item.href} className={className}>
+              <Icon size={17} />
+            </a>
+          ) : (
+            <button key={item.label} type="button" onClick={item.action} className={className}>
+              <Icon size={17} />
+            </button>
+          );
+        })}
+      </div>
+    </>
   );
 }

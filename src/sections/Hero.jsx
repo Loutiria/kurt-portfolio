@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
-import { ArrowRight, Download, Mail, Phone, MapPin, Layers } from "lucide-react";
+import { ArrowRight, Mail, Phone, MapPin, Layers } from "lucide-react";
 import Card from "../components/Card";
+import DownloadResumeButton from "../components/DownloadResumeButton";
 
 function AvailabilityBadge() {
   return (
@@ -80,7 +81,7 @@ export default function Hero({ scrollTo }) {
   return (
     <section
       id="hero"
-      className="mx-auto grid min-h-[92vh] max-w-7xl items-center gap-14 px-6 py-20 md:grid-cols-[1.08fr_0.92fr]"
+      className="mx-auto grid min-h-[92vh] max-w-7xl items-center gap-10 px-5 py-16 pb-24 md:grid-cols-[1.08fr_0.92fr] md:gap-14 md:px-6 md:py-20"
     >
       <motion.div
         initial={{ opacity: 0, y: 34 }}
@@ -89,7 +90,7 @@ export default function Hero({ scrollTo }) {
       >
         <AvailabilityBadge />
 
-        <h1 className="mt-6 max-w-3xl bg-gradient-to-b from-white to-slate-300 bg-clip-text text-5xl font-black leading-[0.98] tracking-[-0.06em] text-transparent md:text-6xl">
+        <h1 className="mt-6 max-w-3xl bg-gradient-to-b from-white to-slate-300 bg-clip-text text-4xl font-black leading-[1.02] tracking-[-0.055em] text-transparent sm:text-5xl md:text-6xl">
           Organized digital support for cleaner workflows and reliable
           execution.
         </h1>
@@ -118,14 +119,7 @@ export default function Hero({ scrollTo }) {
             View Projects <Layers size={18} />
           </button>
 
-          <a
-            href="/Kurt-Panolino-Resume.pdf"
-            className="inline-flex items-center justify-center gap-2 rounded-2xl border border-white/15 px-6 py-4 font-semibold transition hover:bg-white/10"
-            onMouseEnter={(e) => (e.currentTarget.style.borderColor = "var(--accent)")}
-            onMouseLeave={(e) => (e.currentTarget.style.borderColor = "")}
-          >
-            Download Resume <Download size={18} />
-          </a>
+          <DownloadResumeButton />
         </div>
       </motion.div>
 

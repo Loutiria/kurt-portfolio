@@ -1,6 +1,7 @@
 import SectionHeader from "../components/SectionHeader";
 import Card from "../components/Card";
 import { experiences } from "../data/portfolioData";
+import { motion } from "framer-motion";
 
 export default function Experience() {
   return (
@@ -15,7 +16,14 @@ export default function Experience() {
           const Icon = item.icon;
 
           return (
-            <Card key={item.title}>
+    <motion.div
+        key={item.title}
+        initial={{ opacity: 0, x: -20 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.45 }}
+    >
+        <Card>
               <div
                 className="absolute -left-[13px] mt-1 grid h-6 w-6 place-items-center rounded-full border bg-[#070b12]"
                 style={{ borderColor: "var(--accent)" }}
@@ -45,7 +53,8 @@ export default function Experience() {
                   </li>
                 ))}
               </ul>
-            </Card>
+        </Card>
+    </motion.div>
           );
         })}
       </div>

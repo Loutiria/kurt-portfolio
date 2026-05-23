@@ -9,6 +9,8 @@ import CommandPalette from "./components/CommandPalette";
 import FloatingDock from "./components/FloatingDock";
 import ThemeSwitcher from "./components/ThemeSwitcher";
 import AudioToggle from "./components/AudioToggle";
+import CustomCursor from "./components/CustomCursor";
+import RecruiterModeToggle from "./components/RecruiterModeToggle";
 
 import Hero from "./sections/Hero";
 import About from "./sections/About";
@@ -21,6 +23,7 @@ import Experience from "./sections/Experience";
 import RecruiterTrust from "./sections/RecruiterTrust";
 import Contact from "./sections/Contact";
 import WhyHireMe from "./sections/WhyHireMe";
+import WorkPhilosophy from "./sections/WorkPhilosophy";
 
 export default function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -50,6 +53,8 @@ export default function App() {
       <CursorGlow />
       <LoadingScreen isLoading={isLoading} />
       <AnimatedBackground />
+      <CustomCursor />
+      <RecruiterModeToggle />
 
       <Header scrollTo={scrollTo} />
 
@@ -63,6 +68,7 @@ export default function App() {
       <Experience />
       <WhyHireMe />
       <RecruiterTrust scrollTo={scrollTo} />
+      <WorkPhilosophy />
       <Contact />
 
       <Footer scrollTo={scrollTo} />

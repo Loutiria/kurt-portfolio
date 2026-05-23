@@ -1,26 +1,20 @@
-import { useMemo } from "react";
-
-export default function Card({ children, className = "" }) {
-  const hoverEffects = useMemo(
-    () => [
-      "hover:border-cyan-400/40 hover:shadow-cyan-500/20",
-      "hover:border-blue-400/40 hover:shadow-blue-500/20",
-      "hover:border-violet-400/40 hover:shadow-violet-500/20",
-      "hover:border-emerald-400/40 hover:shadow-emerald-500/20",
-      "hover:border-slate-200/30 hover:shadow-slate-400/10",
-    ],
-    []
-  );
-
-  const randomEffect = useMemo(() => {
-    return hoverEffects[Math.floor(Math.random() * hoverEffects.length)];
-  }, [hoverEffects]);
-
+export default function Card({
+  children,
+  className = "",
+}) {
   return (
     <div
-      className={`group rounded-3xl border border-white/10 bg-white/[0.055] p-6 shadow-2xl shadow-black/20 backdrop-blur-xl transition duration-300 hover:-translate-y-1 ${randomEffect} ${className}`}
+      className={`group relative overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.055] p-6 shadow-[0_10px_40px_rgba(0,0,0,0.35)] backdrop-blur-xl transition duration-500 hover:-translate-y-1 hover:border-[var(--accent)] hover:shadow-[0_20px_60px_rgba(0,0,0,0.5)] ${className}`}
     >
-      {children}
+      <div
+        className="pointer-events-none absolute inset-0 opacity-0 transition duration-500 group-hover:opacity-100"
+        style={{
+          background:
+            "linear-gradient(135deg,var(--accent-soft),transparent)",
+        }}
+      />
+
+      <div className="relative z-10">{children}</div>
     </div>
   );
 }

@@ -3,6 +3,7 @@
 :root {
   --accent: #67e8f9;
   --accent-soft: rgba(103, 232, 249, 0.12);
+  --accent-gradient: linear-gradient(135deg, #67e8f9, #3b82f6);
 }
 
 html {
@@ -11,6 +12,9 @@ html {
 
 body {
   margin: 0;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
 
 body::before {
@@ -38,6 +42,49 @@ body::before {
 
 .theme-accent-soft {
   background-color: var(--accent-soft);
+}
+
+button,
+a,
+input,
+textarea {
+  -webkit-tap-highlight-color: transparent;
+}
+
+input,
+textarea,
+select {
+  font-size: 16px;
+}
+
+@media (min-width: 768px) {
+  body {
+    cursor: none;
+  }
+
+  a,
+  button,
+  input,
+  textarea,
+  select,
+  [role="button"] {
+    cursor: none;
+  }
+}
+
+@media (max-width: 767px) {
+  section {
+    scroll-margin-top: 88px;
+  }
+
+  h1 {
+    letter-spacing: -0.045em;
+  }
+
+  input,
+  textarea {
+    min-height: 52px;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
