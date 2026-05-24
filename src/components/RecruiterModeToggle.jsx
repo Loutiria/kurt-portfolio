@@ -1,4 +1,4 @@
-import { Briefcase } from "lucide-react";
+import { Briefcase, X } from "lucide-react";
 import { useRecruiterMode } from "../context/RecruiterModeContext";
 
 export default function RecruiterModeToggle() {
@@ -6,15 +6,16 @@ export default function RecruiterModeToggle() {
 
   return (
     <button
+      type="button"
       onClick={() => setRecruiterMode(!recruiterMode)}
-      className={`fixed right-6 top-24 z-50 hidden items-center gap-2 rounded-2xl border px-4 py-3 text-sm font-medium backdrop-blur-xl transition md:flex ${
+      className={`fixed right-5 top-20 z-50 hidden items-center gap-2 rounded-2xl border px-4 py-3 text-sm font-medium backdrop-blur-xl transition md:flex ${
         recruiterMode
-          ? "border-[var(--accent)] bg-[var(--accent-soft)] text-[var(--accent)]"
-          : "border-white/10 bg-white/10 text-slate-300"
+          ? "border-emerald-400/40 bg-emerald-400/10 text-emerald-300"
+          : "border-white/10 bg-black/30 text-slate-300 hover:border-[var(--accent)] hover:text-[var(--accent)]"
       }`}
     >
-      <Briefcase size={16} />
-      Recruiter Mode
+      {recruiterMode ? <X size={16} /> : <Briefcase size={16} />}
+      {recruiterMode ? "Exit Recruiter Mode" : "Recruiter Mode"}
     </button>
   );
 }

@@ -1,3 +1,4 @@
+import MotionSection from "../components/MotionSection";
 import SectionHeader from "../components/SectionHeader";
 import Card from "../components/Card";
 
@@ -10,16 +11,12 @@ const toolkit = {
   ],
   Creative: ["Adobe Photoshop", "Canva"],
   Development: ["React", "Vite", "Tailwind CSS"],
-  Coordination: [
-    "Event Planning",
-    "Event Coordination",
-    "Facilitation",
-  ],
+  Coordination: ["Event Planning", "Event Coordination", "Facilitation"],
 };
 
 export default function Toolkit() {
   return (
-    <section className="mx-auto max-w-7xl px-6 py-24">
+    <MotionSection className="mx-auto max-w-7xl px-6 py-24">
       <SectionHeader
         label="Toolkit"
         title="Software, systems, and workflow tools."
@@ -33,7 +30,9 @@ export default function Toolkit() {
           >
             <h3
               className="text-xl font-black"
-              style={{ color: "var(--accent)" }}
+              style={{
+                color: "var(--accent)",
+              }}
             >
               {group}
             </h3>
@@ -51,6 +50,6 @@ export default function Toolkit() {
           </Card>
         ))}
       </div>
-    </section>
+    </MotionSection>
   );
 }

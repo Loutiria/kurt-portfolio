@@ -1,4 +1,6 @@
 import { CheckCircle } from "lucide-react";
+
+import MotionSection from "../components/MotionSection";
 import SectionHeader from "../components/SectionHeader";
 import Card from "../components/Card";
 
@@ -13,7 +15,7 @@ const reasons = [
 
 export default function WhyHireMe() {
   return (
-    <section className="mx-auto max-w-7xl px-6 py-24">
+    <MotionSection className="mx-auto max-w-7xl px-6 py-24">
       <SectionHeader
         label="Why Hire Me"
         title="Practical support with structure, reliability, and adaptability."
@@ -23,10 +25,13 @@ export default function WhyHireMe() {
         {reasons.map((reason) => (
           <Card key={reason}>
             <CheckCircle className="text-emerald-300" />
-            <p className="mt-4 leading-7 text-slate-300">{reason}</p>
+
+            <p className="mt-4 leading-7 text-slate-300">
+              {reason}
+            </p>
           </Card>
         ))}
       </div>
-    </section>
+    </MotionSection>
   );
 }

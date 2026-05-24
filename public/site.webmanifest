@@ -1,0 +1,16 @@
+{
+  "name": "Kurt Panolino Portfolio",
+  "short_name": "Kurt Portfolio",
+  "description": "Portfolio of Kurt Panolino — Virtual Assistant and Digital Operations Support.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#070b12",
+  "theme_color": "#070b12",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}

@@ -1,4 +1,11 @@
-import { ClipboardCheck, MessageSquare, FolderKanban, CheckCircle } from "lucide-react";
+import {
+  ClipboardCheck,
+  MessageSquare,
+  FolderKanban,
+  CheckCircle,
+} from "lucide-react";
+
+import MotionSection from "../components/MotionSection";
 import SectionHeader from "../components/SectionHeader";
 import Card from "../components/Card";
 
@@ -27,7 +34,7 @@ const principles = [
 
 export default function WorkPhilosophy() {
   return (
-    <section className="mx-auto max-w-7xl px-6 py-24">
+    <MotionSection className="mx-auto max-w-7xl px-6 py-24">
       <SectionHeader
         label="Work Philosophy"
         title="Structured support built on clarity, organization, and follow-through."
@@ -39,13 +46,23 @@ export default function WorkPhilosophy() {
 
           return (
             <Card key={item.title}>
-              <Icon style={{ color: "var(--accent)" }} />
-              <h3 className="mt-5 text-xl font-bold">{item.title}</h3>
-              <p className="mt-3 text-sm leading-7 text-slate-300">{item.text}</p>
+              <Icon
+                style={{
+                  color: "var(--accent)",
+                }}
+              />
+
+              <h3 className="mt-5 text-xl font-bold">
+                {item.title}
+              </h3>
+
+              <p className="mt-3 text-sm leading-7 text-slate-300">
+                {item.text}
+              </p>
             </Card>
           );
         })}
       </div>
-    </section>
+    </MotionSection>
   );
 }

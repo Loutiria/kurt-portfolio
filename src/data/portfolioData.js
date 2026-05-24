@@ -10,13 +10,11 @@ import {
 } from "lucide-react";
 
 export const navItems = [
-  "about",
-  "services",
-  "tools",
-  "workflow",
-  "projects",
-  "experience",
-  "contact",
+  { label: "Home", page: "home" },
+  { label: "Projects", page: "projects" },
+  { label: "Workflow", page: "workflow" },
+  { label: "Experience", page: "experience" },
+  { label: "Contact", page: "contact" },
 ];
 
 export const skills = [
@@ -31,13 +29,9 @@ export const skills = [
   "Event Planning",
   "Event Coordination",
   "Facilitation",
-  "Attention to Detail",
+  "Documentation Workflows",
   "Time Management",
   "Organization",
-  "Adaptability",
-  "Communication",
-  "Problem Solving",
-  "Critical Thinking",
 ];
 
 export const tools = [
@@ -223,7 +217,7 @@ export const projects = [
       "Google Workspace",
     ],
     outcome:
-      "Improved organization of liquidation-related records and made monitoring easier for student council operations.",
+      "Improved organization and accessibility of liquidation records, making monitoring and reporting more efficient for student council operations.",
     link: "https://cci-liquidation-report.netlify.app/",
   },
   {
@@ -245,7 +239,7 @@ export const projects = [
     title: "Miscellaneous Graphic Design Portfolio",
     role: "Creative Digital Project Assistant",
     description:
-      "A collection of promotional graphics, digital layouts, and social media materials created for visual communication and project support.",
+      "A Google Drive-based creative asset archive containing promotional graphics, social media layouts, and digital materials for visual communication support.",
     responsibilities: [
       "Created promotional graphics, layouts, and social media materials.",
       "Managed multiple creative assets and organized project files efficiently.",
@@ -254,7 +248,7 @@ export const projects = [
     tools: ["Adobe Photoshop", "Canva", "Branding", "Asset Management"],
     outcome:
       "Strengthened practical creative support skills useful for administrative, social media, and digital operations tasks.",
-    link: "#",
+    link: "YOUR_GOOGLE_DRIVE_LINK_HERE",
   },
 ];
 

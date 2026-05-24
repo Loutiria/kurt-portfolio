@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import { Download, ExternalLink, Mail, Search, X } from "lucide-react";
 import { navItems } from "../data/portfolioData";
 
-export default function CommandPalette({ scrollTo }) {
+export default function CommandPalette({ goToPage }) {
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState("");
 
@@ -13,7 +13,9 @@ export default function CommandPalette({ scrollTo }) {
         setOpen((prev) => !prev);
       }
 
-      if (event.key === "Escape") setOpen(false);
+      if (event.key === "Escape") {
+        setOpen(false);
+      }
     };
 
     window.addEventListener("keydown", handleKey);
@@ -23,19 +25,16 @@ export default function CommandPalette({ scrollTo }) {
   const actions = useMemo(
     () => [
       ...navItems.map((item) => ({
-        label: `Go to ${item}`,
-        group: "Navigation",
-        action: () => scrollTo(item),
+        label: `Open ${item.label}`,
+        action: () => goToPage(item.page),
       })),
       {
         label: "Download Resume",
-        group: "Actions",
         icon: Download,
         action: () => window.open("/Kurt-Panolino-Resume.pdf", "_blank"),
       },
       {
         label: "Send Email",
-        group: "Actions",
         icon: Mail,
         action: () =>
           window.open(
@@ -45,7 +44,6 @@ export default function CommandPalette({ scrollTo }) {
       },
       {
         label: "Open LinkedIn",
-        group: "External",
         icon: ExternalLink,
         action: () =>
           window.open(
@@ -54,7 +52,7 @@ export default function CommandPalette({ scrollTo }) {
           ),
       },
     ],
-    [scrollTo]
+    [goToPage]
   );
 
   const filtered = actions.filter((item) =>
@@ -72,13 +70,13 @@ export default function CommandPalette({ scrollTo }) {
             <input
               autoFocus
               value={query}
-              onChange={(e) => setQuery(e.target.value)}
+              onChange={(event) => setQuery(event.target.value)}
               placeholder="Search commands..."
               className="w-full bg-transparent text-sm outline-none placeholder:text-slate-500"
             />
           </div>
 
-          <button onClick={() => setOpen(false)}>
+          <button type="button" onClick={() => setOpen(false)}>
             <X size={18} />
           </button>
         </div>
@@ -90,6 +88,7 @@ export default function CommandPalette({ scrollTo }) {
             return (
               <button
                 key={item.label}
+                type="button"
                 onClick={() => {
                   item.action();
                   setOpen(false);
@@ -104,7 +103,9 @@ export default function CommandPalette({ scrollTo }) {
           })}
 
           {filtered.length === 0 && (
-            <p className="px-4 py-6 text-sm text-slate-500">No command found.</p>
+            <p className="px-4 py-6 text-sm text-slate-500">
+              No command found.
+            </p>
           )}
         </div>
 

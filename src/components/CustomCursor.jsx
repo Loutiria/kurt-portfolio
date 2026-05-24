@@ -1,9 +1,15 @@
 import { useEffect, useState } from "react";
 import { motion, useMotionValue, useSpring } from "framer-motion";
 
+function isTouchDevice() {
+  if (typeof window === "undefined") return true;
+  return window.matchMedia("(pointer: coarse)").matches;
+}
+
 export default function CustomCursor() {
   const [hovering, setHovering] = useState(false);
   const [visible, setVisible] = useState(false);
+  const [enabled, setEnabled] = useState(false);
 
   const cursorX = useMotionValue(-100);
   const cursorY = useMotionValue(-100);
@@ -12,6 +18,10 @@ export default function CustomCursor() {
   const springY = useSpring(cursorY, { stiffness: 500, damping: 40 });
 
   useEffect(() => {
+    if (isTouchDevice()) return;
+
+    setEnabled(true);
+
     const move = (event) => {
       setVisible(true);
       cursorX.set(event.clientX - 10);
@@ -23,12 +33,12 @@ export default function CustomCursor() {
     const enterInteractive = () => setHovering(true);
     const leaveInteractive = () => setHovering(false);
 
+    window.addEventListener("mousemove", move);
+    document.addEventListener("mouseleave", leave);
+
     const interactiveElements = document.querySelectorAll(
       "a, button, input, textarea, select, [role='button']"
     );
-
-    window.addEventListener("mousemove", move);
-    document.addEventListener("mouseleave", leave);
 
     interactiveElements.forEach((element) => {
       element.addEventListener("mouseenter", enterInteractive);
@@ -46,12 +56,14 @@ export default function CustomCursor() {
     };
   }, [cursorX, cursorY]);
 
+  if (!enabled) return null;
+
   return (
     <>
       <motion.div
         style={{ x: springX, y: springY }}
         animate={{
-          scale: hovering ? 2.4 : 1,
+          scale: hovering ? 2.25 : 1,
           opacity: visible ? 1 : 0,
         }}
         transition={{ duration: 0.18 }}

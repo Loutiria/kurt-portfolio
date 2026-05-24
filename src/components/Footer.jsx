@@ -1,76 +1,37 @@
-export default function Footer({ scrollTo }) {
+import { Mail } from "lucide-react";
+
+export default function Footer({ goToPage }) {
+  const currentYear = new Date().getFullYear();
+
   return (
-    <footer className="border-t border-white/10 bg-black/20 px-6 py-10 text-sm text-slate-500">
-      <div className="mx-auto grid max-w-7xl gap-8 md:grid-cols-3">
+    <footer className="border-t border-white/10 bg-black/20">
+      <div className="mx-auto flex max-w-7xl flex-col gap-8 px-6 py-10 md:flex-row md:items-center md:justify-between">
         <div>
-          <div className="mb-4 grid h-12 w-12 place-items-center rounded-2xl border theme-accent-border theme-accent-soft font-black theme-accent-text">
-            KP
-          </div>
+          <button onClick={() => goToPage("home")} className="text-left">
+            <h2 className="text-2xl font-black">Kurt Panolino</h2>
 
-          <p className="font-semibold text-slate-300">Kurt Panolino</p>
-
-          <p className="mt-2 leading-6">
-            Virtual Assistant, Administrative Support, and Digital Operations
-            Support.
-          </p>
+            <p className="mt-2 max-w-md text-sm leading-7 text-slate-400">
+              Virtual Assistant | Administrative & Digital Operations Support
+            </p>
+          </button>
         </div>
 
-        <div>
-          <p className="mb-3 font-semibold text-slate-300">Navigation</p>
-
-          <div className="grid gap-2">
-            {[
-              "about",
-              "services",
-              "tools",
-              "projects",
-              "experience",
-              "contact",
-            ].map((item) => (
-              <button
-                key={item}
-                onClick={() => scrollTo(item)}
-                className="w-fit capitalize transition hover:text-[var(--accent)]"
-              >
-                {item}
-              </button>
-            ))}
-          </div>
-        </div>
-
-        <div>
-          <p className="mb-3 font-semibold text-slate-300">Contact</p>
-
-          <div className="grid gap-2">
-            <a
-              href="mailto:kurutopanorino@gmail.com"
-              className="transition hover:text-[var(--accent)]"
-            >
-              Email
-            </a>
-
-            <a
-              href="https://www.linkedin.com/in/kurt-panolino-8a5ab4410/"
-              target="_blank"
-              rel="noreferrer"
-              className="transition hover:text-[var(--accent)]"
-            >
-              LinkedIn
-            </a>
-
-            <a
-              href="/Kurt-Panolino-Resume.pdf"
-              className="transition hover:text-[var(--accent)]"
-            >
-              Resume PDF
-            </a>
-          </div>
+        <div className="flex flex-wrap items-center gap-4">
+          <a
+            href="https://mail.google.com/mail/?view=cm&fs=1&to=kurutopanorino@gmail.com"
+            target="_blank"
+            rel="noreferrer"
+            className="rounded-2xl border border-white/10 p-3 text-slate-300 transition hover:border-[var(--accent)] hover:text-[var(--accent)]"
+            aria-label="Email Kurt Panolino"
+          >
+            <Mail size={18} />
+          </a>
         </div>
       </div>
 
-      <p className="mx-auto mt-10 max-w-7xl border-t border-white/10 pt-6 text-center">
-        © 2026 Kurt Panolino — Resume Portfolio Website
-      </p>
+      <div className="border-t border-white/10 px-6 py-5 text-center text-sm text-slate-500">
+        © {currentYear} Kurt Panolino. Built with React, Tailwind, and structured UI systems.
+      </div>
     </footer>
   );
-}   
+}

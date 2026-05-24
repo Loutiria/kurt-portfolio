@@ -1,12 +1,19 @@
 import { useEffect, useState } from "react";
 
+function isTouchDevice() {
+  if (typeof window === "undefined") return true;
+  return window.matchMedia("(pointer: coarse)").matches;
+}
+
 export default function CursorGlow() {
-  const [position, setPosition] = useState({
-    x: 0,
-    y: 0,
-  });
+  const [position, setPosition] = useState({ x: 0, y: 0 });
+  const [enabled, setEnabled] = useState(false);
 
   useEffect(() => {
+    if (isTouchDevice()) return;
+
+    setEnabled(true);
+
     const move = (event) => {
       setPosition({
         x: event.clientX,
@@ -15,13 +22,10 @@ export default function CursorGlow() {
     };
 
     window.addEventListener("mousemove", move);
-
-    return () =>
-      window.removeEventListener(
-        "mousemove",
-        move
-      );
+    return () => window.removeEventListener("mousemove", move);
   }, []);
+
+  if (!enabled) return null;
 
   return (
     <div

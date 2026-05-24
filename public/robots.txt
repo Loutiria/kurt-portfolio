@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://kurtportfolio-resume.netlify.app/sitemap.xml

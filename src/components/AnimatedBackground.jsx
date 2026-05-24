@@ -12,15 +12,19 @@ export default function AnimatedBackground() {
 
       <motion.div
         animate={{ y: [0, 18, 0], opacity: [0.22, 0.5, 0.22] }}
-        transition={{ repeat: Infinity, duration: 8, ease: "easeInOut" }}
-        className="absolute left-10 top-40 h-24 w-24 rounded-full border bg-white/5 blur-sm"
+        transition={{
+          repeat: Infinity,
+          duration: 8,
+          ease: "easeInOut",
+        }}
+        className="absolute left-10 top-40 hidden h-24 w-24 rounded-full border bg-white/5 blur-sm md:block"
         style={{ borderColor: "var(--accent)" }}
       />
 
       <motion.div
         animate={{ y: ["-20%", "120%"] }}
         transition={{ repeat: Infinity, duration: 9, ease: "linear" }}
-        className="absolute left-0 top-0 h-24 w-full bg-gradient-to-b from-transparent to-transparent"
+        className="absolute left-0 top-0 hidden h-24 w-full bg-gradient-to-b from-transparent to-transparent md:block"
         style={{ backgroundColor: "var(--accent-soft)" }}
       />
 

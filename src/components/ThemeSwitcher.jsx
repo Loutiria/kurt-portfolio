@@ -5,17 +5,20 @@ const themeStyles = {
   cyan: {
     "--accent": "#67e8f9",
     "--accent-soft": "rgba(103, 232, 249, 0.12)",
-    "--accent-gradient": "linear-gradient(135deg, #67e8f9, #3b82f6)",
+    "--accent-gradient":
+      "linear-gradient(135deg, #67e8f9, #3b82f6)",
   },
   violet: {
     "--accent": "#c4b5fd",
     "--accent-soft": "rgba(196, 181, 253, 0.12)",
-    "--accent-gradient": "linear-gradient(135deg, #c4b5fd, #d946ef)",
+    "--accent-gradient":
+      "linear-gradient(135deg, #c4b5fd, #d946ef)",
   },
   emerald: {
     "--accent": "#6ee7b7",
     "--accent-soft": "rgba(110, 231, 183, 0.12)",
-    "--accent-gradient": "linear-gradient(135deg, #6ee7b7, #14b8a6)",
+    "--accent-gradient":
+      "linear-gradient(135deg, #6ee7b7, #14b8a6)",
   },
 };
 

@@ -1,9 +1,11 @@
+import MotionSection from "../components/MotionSection";
 import SectionHeader from "../components/SectionHeader";
+
 import { tools } from "../data/portfolioData";
 
 export default function Tools() {
   return (
-    <section id="tools" className="mx-auto max-w-7xl px-6 py-24">
+    <MotionSection className="mx-auto max-w-7xl px-6 py-24">
       <SectionHeader
         label="Tools & Platforms"
         title="Software familiarity for administrative, creative, and remote support tasks."
@@ -25,6 +27,6 @@ export default function Tools() {
           </div>
         ))}
       </div>
-    </section>
+    </MotionSection>
   );
 }
