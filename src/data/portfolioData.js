@@ -248,7 +248,7 @@ export const projects = [
     tools: ["Adobe Photoshop", "Canva", "Branding", "Asset Management"],
     outcome:
       "Strengthened practical creative support skills useful for administrative, social media, and digital operations tasks.",
-    link: "YOUR_GOOGLE_DRIVE_LINK_HERE",
+    link: "https://drive.google.com/drive/u/1/folders/1Xd55p4wTFRbv9DZvl_h1nRRofqIwGgyW",
   },
 ];
 
